@@ -37,7 +37,7 @@ export default function SimpleContainer() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" >
         <Box
           sx={{
             bgcolor: "#cfe8fc",
