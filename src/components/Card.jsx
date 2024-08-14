@@ -26,7 +26,7 @@ export default function MediaCard({ product }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">{product.attributes.price}</Button>
+        <Button size="small">$ {product.attributes.price}</Button>
         
       </CardActions>
     </Card>
