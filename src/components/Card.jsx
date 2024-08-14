@@ -1,31 +1,33 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-export default function MediaCard() {
+export default function MediaCard({ product }) {
+
   return (
     <Card sx={{ width: "100%", border: "1px solid blue", margin: "auto" }}>
       <CardMedia
-        sx={{ height: 140}}
-        image="https://picsum.photos/200/300"
+        sx={{ height: 240 }}
+        image={product.attributes.image}
         title="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {product.attributes.title}
+          <p>{product.attributes.category}</p>
+          <em>{product.attributes.company}</em>
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {product.attributes.description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small">{product.attributes.price}</Button>
+        
       </CardActions>
     </Card>
   );

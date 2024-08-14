@@ -23,15 +23,30 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function SimpleContainer() {
+export default function Form(props) {
   const [age, setAge] = React.useState("");
   const [category, setCategory] = React.useState("all");
   const [company, setCompany] = React.useState("all");
   const [sort, setSort] = React.useState("a-z");
   const [priceValue, setPriceValue] = React.useState(100);
+  
 
   function handleChange(newVal) {
     setPriceValue(newVal.target.value);
+  }
+
+  function handleSearch(){
+    let copiedProducts=JSON.parse(JSON.stringify(props.filter.products));
+
+    if(category != 'all'){
+      copiedProducts=copiedProducts.filter((product, ind)=>{
+        return product.attributes.category == category
+      })
+    }
+    console.log(copiedProducts);
+    
+
+    props.filter.setFilteredProducts(copiedProducts);
   }
 
   return (
@@ -301,6 +316,7 @@ export default function SimpleContainer() {
             <Grid item="true" xs={12} sm={6} md={4} lg={3}>
               <FormControl fullWidth>
                 <Button
+                onClick={handleSearch}
                   color="primary"
                   size="small"
                   sx={{
