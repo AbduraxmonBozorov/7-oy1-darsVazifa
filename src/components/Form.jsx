@@ -29,22 +29,25 @@ export default function Form(props) {
   const [company, setCompany] = React.useState("all");
   const [sort, setSort] = React.useState("a-z");
   const [priceValue, setPriceValue] = React.useState(100);
-  
 
   function handleChange(newVal) {
     setPriceValue(newVal.target.value);
   }
 
-  function handleSearch(){
-    let copiedProducts=JSON.parse(JSON.stringify(props.filter.products));
+  function handleSearch() {
+    let copiedProducts = JSON.parse(JSON.stringify(props.filter.products));
 
-    if(category != 'all'){
-      copiedProducts=copiedProducts.filter((product, ind)=>{
-        return product.attributes.category == category
-      })
+    if (category != "all") {
+      copiedProducts = copiedProducts.filter((product, ind) => {
+        return product.attributes.category == category;
+      });
     }
-    console.log(copiedProducts);
-    
+
+    if (company != "all") {
+      copiedProducts = copiedProducts.filter((product, ind) => {
+        return product.attributes.company == company;
+      });
+    }
 
     props.filter.setFilteredProducts(copiedProducts);
   }
@@ -52,7 +55,7 @@ export default function Form(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="lg" >
+      <Container maxWidth="lg">
         <Box
           sx={{
             bgcolor: "#cfe8fc",
@@ -106,7 +109,9 @@ export default function Form(props) {
                   variant="outlined"
                   fullWidth
                   color="secondary"
-                  onChange={(e)=>{setCategory(e.target.value)}}
+                  onChange={(e) => {
+                    setCategory(e.target.value);
+                  }}
                   sx={{
                     padding: 0, // Ichki bo'shliqni olib tashlash
                     borderRadius: 8, // Burchak radiusi 8px
@@ -157,7 +162,9 @@ export default function Form(props) {
                   variant="outlined"
                   fullWidth
                   color="secondary"
-                  onChange={(e)=>{setCompany(e.target.value)}}
+                  onChange={(e) => {
+                    setCompany(e.target.value);
+                  }}
                   sx={{
                     padding: 0, // Ichki bo'shliqni olib tashlash
                     borderRadius: 8, // Burchak radiusi 8px
@@ -208,7 +215,9 @@ export default function Form(props) {
                   variant="outlined"
                   fullWidth
                   color="secondary"
-                  onChange={(e)=>{setSort(e.target.value)}}
+                  onChange={(e) => {
+                    setSort(e.target.value);
+                  }}
                   sx={{
                     padding: 0, // Ichki bo'shliqni olib tashlash
                     borderRadius: 8, // Burchak radiusi 8px
@@ -316,11 +325,11 @@ export default function Form(props) {
             <Grid item="true" xs={12} sm={6} md={4} lg={3}>
               <FormControl fullWidth>
                 <Button
-                onClick={handleSearch}
+                  onClick={handleSearch}
                   color="primary"
                   size="small"
                   sx={{
-                    borderRadius: 2
+                    borderRadius: 2,
                   }}
                   variant="contained"
                 >
@@ -337,8 +346,8 @@ export default function Form(props) {
                     borderRadius: 2,
                     backgroundColor: "#c149ad",
                     ":hover": {
-                      backgroundColor: "#a206ad"
-                    }
+                      backgroundColor: "#a206ad",
+                    },
                   }}
                   variant="contained"
                 >
@@ -346,7 +355,6 @@ export default function Form(props) {
                 </Button>
               </FormControl>
             </Grid>
-
           </Grid>
         </Box>
       </Container>

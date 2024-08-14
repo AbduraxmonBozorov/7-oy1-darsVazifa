@@ -8,6 +8,7 @@ function App() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sendProducts, setSendProducts] = useState([]);
 
+  
   useEffect(()=>{
     fetch(`https://strapi-store-server.onrender.com/api/products`)
       .then(resp => resp.json())
@@ -23,7 +24,12 @@ function App() {
   return (
     <div>
       <Form filter={{setFilteredProducts, products}} />
-      <Cards products={sendProducts} /> 
+      {
+        filteredProducts.length > 0 ? <Cards products={filteredProducts} /> : ""
+      }
+      {
+        products.length > 0 ? <Cards products={products} /> : <h1>Loading...</h1>
+      } 
     </div>
   )
 }
